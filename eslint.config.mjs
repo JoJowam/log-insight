@@ -30,11 +30,6 @@ export default [
       eqeqeq: 'warn',
       'no-throw-literal': 'warn',
       semi: 'warn',
-
-      //Custom rules:
-      '@typescript-eslint/sort-type-constituents': 'error',
-      '@typescript-eslint/consistent-type-imports': 'error',
-      '@typescript-eslint/no-floating-promises': 'error',
     },
   },
   prettier,
