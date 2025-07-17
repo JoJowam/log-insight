@@ -21,8 +21,42 @@
       {
         "command": "log-insight.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "log-insight.logVariable",
+        "title": "Insert console.log for variable"
+      },
+      {
+        "command": "log-insight.debugSelection",
+        "title": "Insert debug logs for selection"
       }
-    ]
+    ],
+    "keybindings": [
+      {
+        "command": "log-insight.logVariable",
+        "key": "ctrl+shift+l",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "log-insight.debugSelection",
+        "key": "ctrl+shift+d",
+        "when": "editorTextFocus"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "log-insight.logVariable",
+          "when": "editorHasSelection",
+          "group": "navigation"
+        },
+        {
+          "command": "log-insight.debugSelection",
+          "when": "editorHasSelection",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
     "check-types": "tsc --noEmit",
