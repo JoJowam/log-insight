@@ -1,5 +1,13 @@
 import type { ExtensionContext, TextEditor } from 'vscode';
-import { commands, Position, window } from 'vscode';
+import { commands, Position, window, workspace } from 'vscode';
+
+const TranslateANSIColors: { [key: string]: string } = {
+  cyan: '\\x1b[36m',
+  yellow: '\\x1b[33m',
+  magenta: '\\x1b[35m',
+  green: '\\x1b[32m',
+  red: '\\x1b[31m',
+};
 
 /**
  * @description
@@ -26,7 +34,19 @@ async function logVariable() {
   const selection = getSelectedContent(editor);
   if (!selection) return;
 
-  const logStatement = `console.log("${selection}:", ${selection});`;
+  const config = workspace.getConfiguration('log-insight');
+  const selectedColor = config.get<string>('color');
+
+  let logStatement: string;
+  const colorCode = selectedColor ? TranslateANSIColors[selectedColor] : undefined;
+
+  if (colorCode) {
+    const resetCode = '\\x1b[0m';
+    logStatement = `console.log("${colorCode}%s${resetCode}", "${selection}:", ${selection});`;
+  } else {
+    logStatement = `console.log("${selection}:", ${selection});`;
+  }
+
   await insertLogInEditor(editor, logStatement);
 }
 

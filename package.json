@@ -56,6 +56,24 @@
           "group": "navigation"
         }
       ]
+    },
+    "configuration": {
+      "title": "Log Insight",
+      "properties": {
+        "log-insight.color": {
+          "type": "string",
+          "enum": [
+            "none",
+            "cyan",
+            "yellow",
+            "magenta",
+            "green",
+            "red"
+          ],
+          "default": "none",
+          "description": "Sets the color of the log output in the terminal (uses ANSI codes). By default set to 'none', choose a different option to customize the color of your logs."
+        }
+      }
     }
   },
   "scripts": {
