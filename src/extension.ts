@@ -26,7 +26,7 @@ async function logVariable() {
   const selection = getSelectedContent(editor);
   if (!selection) return;
 
-  const logStatement = `console.log("${selection}:", ${selection});)`;
+  const logStatement = `console.log("${selection}:", ${selection});`;
   await insertLogInEditor(editor, logStatement);
 }
 
